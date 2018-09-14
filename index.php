@@ -1,7 +1,6 @@
 <?php
 session_start();
 include("lib/PhpLogic.php");
-$DBcon = new DBconnect();
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,7 +34,7 @@ $DBcon = new DBconnect();
 <?php } 
 if (login::$loginStatus == "True") {?>
 	<div class="container">
-		<h3>test</h3>
+		<h1>Hier komt het bestel form!</h1>
 	</div>
 <?php } ?>
 </body>

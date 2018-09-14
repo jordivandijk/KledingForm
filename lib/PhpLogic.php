@@ -3,37 +3,15 @@
  {
  	$login = new login($_POST['GB'],$_POST['WW']);
  }
-
-
-
-/**
- * Hier connect ik met de database in localhost genaamd kledingdrukkerij.
- */
-class DBconnect
-{
-	private $servername = "localhost";
-	private $username = "root";
-	private $password = "";
-	private $dbname =	"kledingdrukkerij";
-	public static $connStatus;
-	
-	function __construct()
-	{
-		$conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
-		if ($conn->connect_error) 
-		{
-    		self::$connStatus = "Connection failed: " . $conn->connect_error;
-		}else{
-			self::$connStatus =  "Connected succesfully";
-		}
-	}
-}
-
 /**
  * Kleine login validatie class
  */
 class login
 {
+	private $servername = "localhost";
+	private $username = "root";
+	private $password = "";
+	private $dbname =	"kledingdrukkerij";
 	private $gebruikersnaam;
 	private $wachtwoord;
 	public static $loginStatus = "false";
@@ -46,11 +24,16 @@ class login
 	}
 	private function validateUser()
 	{
-		if($this->gebruikersnaam == "admin.jordi" && $this->wachtwoord == "Zakelijk01")
-		{
+		$conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+		$query = "SELECT * FROM gebruikers WHERE Gebruikersnaam = '". $this->gebruikersnaam ."' AND Wachtwoord = '". $this->wachtwoord ."'" ;
+		$result = mysqli_query($conn,$query);
+		if (mysqli_num_rows($result) == 1) {
 			self::$loginStatus = "True";
+		} else {
+			self::$loginStatus = "false";
+			echo "<h3>Login ongeldig!</h3>";
 		}
+		$conn->close();
 	}
-
 }
 ?>
