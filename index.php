@@ -1,8 +1,5 @@
 <?php
-session_start();
-$_SESSION['loginStatus'] ="";
 include("lib/PhpLogic.php");
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -25,18 +22,19 @@ include("lib/PhpLogic.php");
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
+        <a class="nav-link" href="Orderoverzicht.php">Order overzicht<span class="sr-only">(current)</span></a>
       </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0" method="post" action="index.php">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="uitloggen">Uitloggen</button>
-    </form>
+    <?php if(Database::$loginStatus == "True") { ?>
+	    <form class="form-inline my-2 my-lg-0" method="post" action="index.php">
+	      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="uitloggen">Uitloggen</button>
+	    </form>
+    <?php } ?>
   </div>
 </nav>
-<?php if($_SESSION['loginStatus'] == "false" || $_SESSION['loginStatus'] == "") {?>
+<?php 
+if(Database::$loginStatus == "false")
+{ ?>
 	<div class="container">
 	  <h2>Login</h2>
 	  <form action="index.php" method="post">
@@ -54,7 +52,8 @@ include("lib/PhpLogic.php");
 	  </form>
 	</div>
 <?php } 
-if ($_SESSION['loginStatus'] == "True") {?>
+if (Database::$loginStatus == "True")
+{ ?>
 	<div class="container">
 		<form method="post" action="">
 			<div class="form-group">
