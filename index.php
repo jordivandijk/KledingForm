@@ -1,6 +1,7 @@
 <?php
 session_start();
 include("lib/PhpLogic.php");
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -14,7 +15,7 @@ include("lib/PhpLogic.php");
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-<?php if(login::$loginStatus == "false") {?>
+<?php if($_SESSION['loginStatus'] == "false") {?>
 	<div class="container">
 	  <h2>Login</h2>
 	  <form action="index.php" method="post">
@@ -28,14 +29,45 @@ include("lib/PhpLogic.php");
 	    </div>
 	    <div class="form-group form-check">
 	    </div>
-	    <button type="submit" name="submit" class="btn btn-primary">Log in</button>
+	    <button type="submit" name="Login" class="btn btn-primary">Log in</button>
 	  </form>
 	</div>
 <?php } 
-if (login::$loginStatus == "True") {?>
+if ($_SESSION['loginStatus'] == "True") {?>
 	<div class="container">
-		<h1>Hier komt het bestel form!</h1>
+		<form method="post" action="">
+			<div class="form-group">
+			 	<label>Product:</label>
+			 	<input type="text" required class="form-control" name="Product">
+			 </div>
+			   <div class="form-group">
+			    <label for="Maat">Maat:</label>
+			    <select  class="form-control" name="Maat">
+			      <option>Selecteer maat</option>
+			      <option>XS</option>
+			      <option>S</option>
+			      <option>M</option>
+			      <option>L</option>
+			      <option>XL</option>
+			      <option>XXL</option>
+			    </select>
+			  </div>
+			 <div class="form-group" >
+			 	<label>Aantal:</label>
+			 	<input placeholder="Voer een Aantal in" name="Aantal" required type="number" value="" min="0" max="1000"/>
+			 </div>
+			 <div class="form-group">
+			 	<button type="submit" name="bewaarGegevens" class="btn btn-primary">Opslaan/ander product toevoegen</button>
+			 </div>
+			 <div class="form-group">
+			 	<button type="submit" name="VerzendGegevens" class="btn btn-primary">Sluit en verzend order</button>
+			 </div>
+		</form>
 	</div>
 <?php } ?>
+	<script src="lib/bootstrap-input-spinner.js"></script>
+	<script>
+    	$("input[type='number']").inputSpinner()
+	</script>
 </body>
 </html>
