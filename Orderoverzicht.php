@@ -49,7 +49,7 @@ if (Database::$loginStatus == "True")
       <tr>
         <td>Polo</td>
         <td>XL</td>
-        <td>4</td>
+        <td>5</td>
       </tr>
       <tr>
         <td>Polo</td>
@@ -59,7 +59,7 @@ if (Database::$loginStatus == "True")
       <tr>
         <td>Broek</td>
         <td>34</td>
-        <td>5</td>
+        <td>7</td>
       </tr>
     </tbody>
   </table>
