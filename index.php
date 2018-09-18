@@ -1,5 +1,6 @@
 <?php
 session_start();
+$_SESSION['loginStatus'] ="";
 include("lib/PhpLogic.php");
 
 ?>
@@ -15,7 +16,27 @@ include("lib/PhpLogic.php");
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 </head>
 <body>
-<?php if($_SESSION['loginStatus'] == "false") {?>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="index.php">KledingDrukkerij</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" method="post" action="index.php">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit" name="uitloggen">Uitloggen</button>
+    </form>
+  </div>
+</nav>
+<?php if($_SESSION['loginStatus'] == "false" || $_SESSION['loginStatus'] == "") {?>
 	<div class="container">
 	  <h2>Login</h2>
 	  <form action="index.php" method="post">

@@ -7,8 +7,6 @@ $db = new Database();
  }
 
 
-
-
 class Database
 {
 	private $servername = "localhost";
