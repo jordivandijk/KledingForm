@@ -29,7 +29,7 @@ include("lib/PhpLogic.php");
 	    </div>
 	    <div class="form-group form-check">
 	    </div>
-	    <button type="submit" name="Login" class="btn btn-primary">Log in</button>
+	    <button type="submit" name="Login" class="btn btn-primary btn-md btn-block">Log in</button>
 	  </form>
 	</div>
 <?php } 
@@ -57,10 +57,11 @@ if ($_SESSION['loginStatus'] == "True") {?>
 			 	<input placeholder="Voer een Aantal in" name="Aantal" required type="number" value="" min="0" max="1000"/>
 			 </div>
 			 <div class="form-group">
-			 	<button type="submit" name="bewaarGegevens" class="btn btn-primary">Opslaan/ander product toevoegen</button>
+			 	<label></label>
+			 	<button type="submit" name="bewaarGegevens" class="btn btn-primary btn-md btn-block">Opslaan/ander product toevoegen</button>
 			 </div>
 			 <div class="form-group">
-			 	<button type="submit" name="VerzendGegevens" class="btn btn-primary">Sluit en verzend order</button>
+			 	<button type="submit" name="VerzendGegevens" class="btn btn-primary btn-md btn-block">Sluit en verzend order</button>
 			 </div>
 		</form>
 	</div>
