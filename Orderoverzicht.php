@@ -22,7 +22,10 @@ include("lib/PhpLogic.php");
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="Orderoverzicht.php">Order overzicht<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="index.php">Producten toevoegen<span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="Orderoverzicht.php">Overzicht en afsluiten order<span class="sr-only">(current)</span></a>
         </li>
       </ul>
       <?php if(Database::$loginStatus == "True"){ ?>
@@ -46,24 +49,19 @@ if (Database::$loginStatus == "True")
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Polo</td>
-        <td>XL</td>
-        <td>5</td>
-      </tr>
-      <tr>
-        <td>Polo</td>
-        <td>M</td>
-        <td>2</td>
-      </tr>
-      <tr>
-        <td>Broek</td>
-        <td>34</td>
-        <td>7</td>
-      </tr>
+        <?php
+          
+        ?>
     </tbody>
   </table>
-  
+  <br>
+  <div class="container">
+    <form>
+      <div class="form-group">
+        <button type="submit" name="VerzendGegevens" class="btn btn-primary btn-md btn-block">Sluit en verzend order</button>
+      </div>
+    </form>
+  </div>
 <?php } 
 if(Database::$loginStatus == "false")
 { ?>

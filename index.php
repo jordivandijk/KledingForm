@@ -22,7 +22,10 @@ include("lib/PhpLogic.php");
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="Orderoverzicht.php">Order overzicht<span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="index.php">Producten toevoegen<span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="Orderoverzicht.php">Overzicht en afsluiten order<span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <?php if(Database::$loginStatus == "True") { ?>
@@ -63,13 +66,17 @@ if (Database::$loginStatus == "True")
 			   <div class="form-group">
 			    <label for="Maat">Maat:</label>
 			    <select  class="form-control" name="Maat">
-			      <option>Selecteer maat</option>
+			      <option>--Selecteer maat--</option>
 			      <option>XS</option>
 			      <option>S</option>
 			      <option>M</option>
 			      <option>L</option>
 			      <option>XL</option>
 			      <option>XXL</option>
+			      <option>--Broek maten--</option>
+			      <option>42</option>
+			      <option>43</option>
+			      <option>44</option>
 			    </select>
 			  </div>
 			 <div class="form-group" >
@@ -79,9 +86,6 @@ if (Database::$loginStatus == "True")
 			 <div class="form-group">
 			 	<label></label>
 			 	<button type="submit" name="bewaarGegevens" class="btn btn-primary btn-md btn-block">Opslaan/ander product toevoegen</button>
-			 </div>
-			 <div class="form-group">
-			 	<button type="submit" name="VerzendGegevens" class="btn btn-primary btn-md btn-block">Sluit en verzend order</button>
 			 </div>
 		</form>
 	</div>

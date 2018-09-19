@@ -58,7 +58,20 @@ class Database
 
 	function opslaan($product,$maat,$aantal)
 	{
-		
+		$conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+		$sql = "INSERT INTO `order` (Product, Maat, Aantal) VALUES ('". $product ."', '". $maat ."', '". $aantal ."')";
+		if ($conn->query($sql) === FALSE) 
+		{
+		    echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+		$conn->close();
+	}
+
+	function orderOphalen()
+	{
+		$conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+
+		$conn->close();
 	}
 }
 ?>
