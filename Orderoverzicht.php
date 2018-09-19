@@ -1,5 +1,7 @@
 <?php
 include("lib/PhpLogic.php");
+$db->orderOphalen();
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -50,7 +52,15 @@ if (Database::$loginStatus == "True")
     </thead>
     <tbody>
         <?php
-          
+          foreach( Database::$order as $product )
+          {
+            echo '<tr>';
+            foreach( $product as $key )
+            {
+              echo '<td>'.$key.'</td>';
+            }
+            echo '</tr>';
+          }
         ?>
     </tbody>
   </table>

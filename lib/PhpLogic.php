@@ -32,6 +32,7 @@ class Database
 	private $gebruikersnaam;
 	private $wachtwoord;
 	public static $loginStatus = "false";
+	public static $order = array();
 	
 	function login($gb,$ww)
 	{
@@ -70,7 +71,15 @@ class Database
 	function orderOphalen()
 	{
 		$conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
-
+		$sql = "SELECT Product, Maat, Aantal FROM `order`";
+		$result = mysqli_query($conn, $sql);
+		if (mysqli_num_rows($result) > 0) 
+		{
+			while($row = mysqli_fetch_assoc($result)) 
+			{
+			    self::$order[] = $row;			
+			}
+		}
 		$conn->close();
 	}
 }

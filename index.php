@@ -95,4 +95,3 @@ if (Database::$loginStatus == "True")
     	$("input[type='number']").inputSpinner()
 	</script>
 </body>
-</html>
