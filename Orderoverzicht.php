@@ -37,6 +37,7 @@ $db->orderOphalen();
       <?php } ?>
     </div>
   </nav>
+<div class="container">
 <?php
 if (Database::$loginStatus == "True")
 {
@@ -52,19 +53,15 @@ if (Database::$loginStatus == "True")
     </thead>
     <tbody>
         <?php
-          foreach( Database::$order as $product )
+          foreach( Database::$order as $key )
           {
-            echo '<tr>';
-            foreach( $product as $key )
-            {
-              echo '<td>'.$key.'</td>';
-            }
-            echo '</tr>';
+            echo '<tr><td>'.$key['Product'].'</td><td>'.$key['Maat'].'</td><td>'.$key['Aantal'].'</td><td><a href="Orderoverzicht.php?delete='.$key['id'].'"><img style="height: 20px; width: 20px;" src="img/verwijder.png"></a></td></tr>';
           }
         ?>
     </tbody>
   </table>
   <br>
+</div>
   <div class="container">
     <form>
       <div class="form-group">

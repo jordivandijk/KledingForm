@@ -6,21 +6,22 @@ if (isset($_POST['Login']))
 {
  	$db->login($_POST['GB'],$_POST['WW']);
 }
-
 if (isset($_POST['uitloggen']))
 {
  	unset($_SESSION['loginStatus']);
  	session_destroy();
 }
-
 if (isset($_SESSION['loginStatus']))
 {
 	Database::$loginStatus = $_SESSION['loginStatus'];
 }
-
 if (isset($_POST['bewaarGegevens'])) 
 {
 	$db->opslaan($_POST['Product'], $_POST['Maat'], $_POST['Aantal']);
+}
+if (isset($_GET['delete'])) 
+{
+	$db->delete($_GET['delete']);
 }
 
 class Database
@@ -71,7 +72,7 @@ class Database
 	function orderOphalen()
 	{
 		$conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
-		$sql = "SELECT Product, Maat, Aantal FROM `order`";
+		$sql = "SELECT id, Product, Maat, Aantal FROM `order`";
 		$result = mysqli_query($conn, $sql);
 		if (mysqli_num_rows($result) > 0) 
 		{
@@ -80,6 +81,21 @@ class Database
 			    self::$order[] = $row;			
 			}
 		}
+		$conn->close();
+	}
+
+	function delete($id)
+	{
+		$conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+		$sql = "DELETE FROM `order` WHERE id=" . $id . "";
+
+		if ($conn->query($sql) === TRUE) 
+		{
+			echo '<div class="alert alert-danger" role="alert">Het artikel is verwijderd!</div>';
+		}else{
+		    echo "<script> alert('Error deleting record: '" . $conn->error ."');</script>";
+		}
+
 		$conn->close();
 	}
 }
