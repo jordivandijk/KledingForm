@@ -38,6 +38,7 @@ $db->orderOphalen();
     </div>
   </nav>
 <div class="container">
+<br />
 <?php
 if (Database::$loginStatus == "True")
 {
@@ -53,9 +54,9 @@ if (Database::$loginStatus == "True")
     </thead>
     <tbody>
         <?php
-          foreach( Database::$order as $key )
+          foreach(Database::$order as $key)
           {
-            echo '<tr><td>'.$key['Product'].'</td><td>'.$key['Maat'].'</td><td>'.$key['Aantal'].'</td><td><a href="Orderoverzicht.php?delete='.$key['id'].'"><img style="height: 20px; width: 20px;" src="img/verwijder.png"></a></td></tr>';
+            echo '<tr><td>'.$key['Product'].'</td><td>'.$key['Maat'].'</td><td>'.$key['Aantal'].'</td><td><a alt="verwijder" href="Orderoverzicht.php?delete='.$key['id'].'"><img style="height: 20px; width: 20px;" src="img/verwijder.png"></a></td></tr>';
           }
         ?>
     </tbody>
@@ -63,7 +64,23 @@ if (Database::$loginStatus == "True")
   <br>
 </div>
   <div class="container">
-    <form>
+    <form method="post" action="Orderoverzicht.php">
+      <div class="form-group">
+        <label>Bedrijfsnaam:</label>
+        <input type="text" class="form-control" name="bedrijfsnaam">
+      </div>
+      <div class="form-group">
+      <label>Straat en huisnummer:</label>
+        <input type="text" class="form-control" name="bedrijfAdres">
+      </div>
+      <div class="form-group">
+      <label>Postcode:</label>
+        <input type="text" class="form-control" name="bedrijfPostcode">
+      </div>
+      <div class="form-group">
+        <label>E-mail:</label>
+        <input type="email" class="form-control" name="bedrijfEmail">
+      </div>
       <div class="form-group">
         <button type="submit" name="VerzendGegevens" class="btn btn-primary btn-md btn-block">Sluit en verzend order</button>
       </div>

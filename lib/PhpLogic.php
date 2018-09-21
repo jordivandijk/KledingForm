@@ -23,6 +23,13 @@ if (isset($_GET['delete']))
 {
 	$db->delete($_GET['delete']);
 }
+if (isset($_POST['VerzendGegevens'])) 
+{
+	$email = new Mail();
+	$email->opstellenMail($_POST['bedrijfsnaam'],$_POST['bedrijfAdres'],$_POST['bedrijfPostcode'],$_POST['bedrijfEmail']);
+	//var_dump(Database::$order);
+	//$db->clearOrder();
+}
 
 class Database
 {
@@ -87,7 +94,7 @@ class Database
 	function delete($id)
 	{
 		$conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
-		$sql = "DELETE FROM `order` WHERE id=" . $id . "";
+		$sql = "DELETE FROM `order` WHERE id=". $id ."";
 
 		if ($conn->query($sql) === TRUE) 
 		{
@@ -97,6 +104,34 @@ class Database
 		}
 
 		$conn->close();
+	}
+
+	function clearOrder()
+	{
+		$conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+		$sql = "DELETE FROM `order`";
+		if ($conn->query($sql) === TRUE) 
+		{
+			echo '<div class="alert alert-success" role="alert">Uw order wordt verzonden en is geleegd!</div>';
+		}else{
+		    echo "<script> alert('Error deleting record: '" . $conn->error ."');</script>";
+		}
+		$conn->close();
+	}
+}
+
+class Mail
+{
+	private $emailAdres = "jordi@zakelijkberijkbaar.nl";
+
+	function opstellenMail($bedrijfsnaam,$bedrijfsadres,$bedrijfpostcode,$bedrijfemail)
+	{
+		
+	}
+
+	function verzendenMail($mailadress)
+	{
+		mail();
 	}
 }
 ?>
